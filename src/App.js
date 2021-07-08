@@ -2,25 +2,24 @@ import './App.css';
 import Dashboard from './pages/Dashboard';
 import React, { useEffect, useState } from "react";
 import axios from 'axios'
-
-var feedbackContext = React.createContext(null);
+import feedbackContext from './utils/FeedbackContext'
 
 function App() {
 
   const [feedbackData, setFeedbackData] = useState([])
 
   useEffect(()=>{
-    axios.get('data.json').then((data)=>{
-      console.log(data)
+    axios.get('data.json').then((res)=>{
+      setFeedbackData(res.data.productRequests)
     })
   }, [])
 
   return (
-    <div className="App">
       <feedbackContext.Provider value={feedbackData}>
-          <Dashboard />
+        <div className="App">
+            <Dashboard />
+        </div>
       </feedbackContext.Provider>
-    </div>
   );
 }
 
