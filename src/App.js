@@ -10,8 +10,8 @@ function App() {
   const [feedbackData, setFeedbackData] = useState([])
 
   useEffect(()=>{
-    axios.get('data.json').then(()=>{
-      
+    axios.get('data.json').then((data)=>{
+      console.log(data)
     })
   }, [])
 
